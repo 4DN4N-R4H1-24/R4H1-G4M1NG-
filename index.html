@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R4H1 GAMING ZONE | Cyberpunk Gaming</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="neon-loader">
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+            </div>
+            <h1 class="loading-title">R4H1 GAMING ZONE</h1>
+            <p class="loading-text">Initializing Cyberpunk Systems...</p>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="loading-stats">
+                <div class="stat"><span class="stat-value">100%</span><span class="stat-label">Neon Grid</span></div>
+                <div class="stat"><span class="stat-value">100%</span><span class="stat-label">Game Core</span></div>
+                <div class="stat"><span class="stat-value">100%</span><span class="stat-label">UI Systems</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu Content -->
+    <div id="main-content" class="main-content hidden">
+        <div class="cyberpunk-bg">
+            <div class="grid-lines"></div>
+            <div class="scanline"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        
+        <header class="main-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h1 class="site-title">R4H1 <span class="neon-text">GAMING ZONE</span></h1>
+                <div class="logo-subtitle">CYBERPUNK EDITION</div>
+            </div>
+            
+            <div class="header-glow"></div>
+        </header>
+
+        <main class="main-menu">
+            <div class="menu-container">
+                <div class="menu-intro">
+                    <h2 class="neon-text">WELCOME TO THE ZONE</h2>
+                    <p class="menu-description">Enter a neon-lit world of classic games reimagined. Select your experience below.</p>
+                    <div class="cyber-divider">
+                        <div class="divider-line"></div>
+                        <div class="divider-icon"><i class="fas fa-chevron-down"></i></div>
+                        <div class="divider-line"></div>
+                    </div>
+                </div>
+
+                <div class="menu-options">
+                    <button id="play-game-btn" class="cyber-button cyber-button-primary">
+                        <span class="button-content">
+                            <i class="fas fa-play-circle button-icon"></i>
+                            <span class="button-text">PLAY GAME</span>
+                        </span>
+                        <span class="button-glow"></span>
+                    </button>
+
+                    <button id="dev-info-btn" class="cyber-button cyber-button-secondary">
+                        <span class="button-content">
+                            <i class="fab fa-facebook button-icon"></i>
+                            <span class="button-text">DEVELOPER INFORMATION</span>
+                        </span>
+                        <span class="button-glow"></span>
+                    </button>
+                </div>
+
+                <div class="menu-features">
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                        <h3>AI OPPONENTS</h3>
+                        <p>Challenge advanced AI in multiple games</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>MOBILE READY</h3>
+                        <p>Optimized for all screen sizes</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-keyboard"></i></div>
+                        <h3>KEYBOARD SUPPORT</h3>
+                        <p>Full keyboard controls available</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <p class="copyright">© 2023 R4H1 GAMING ZONE | CYBERPUNK EDITION</p>
+                <div class="social-icons">
+                    <div class="social-icon"><i class="fab fa-github"></i></div>
+                    <div class="social-icon"><i class="fab fa-twitter"></i></div>
+                    <div class="social-icon"><i class="fab fa-discord"></i></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Loading screen simulation
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            const progressBar = document.querySelector('.progress-bar');
+            const playGameBtn = document.getElementById('play-game-btn');
+            const devInfoBtn = document.getElementById('dev-info-btn');
+            
+            // Simulate loading progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    
+                    // Complete loading
+                    setTimeout(() => {
+                        loadingScreen.classList.add('fade-out');
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                            mainContent.classList.remove('hidden');
+                        }, 500);
+                    }, 300);
+                }
+                progressBar.style.width = `${progress}%`;
+            }, 100);
+            
+            // Button event handlers
+            playGameBtn.addEventListener('click', function() {
+                // Add click effect
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    window.location.href = 'game-menu.html';
+                }, 300);
+            });
+            
+            devInfoBtn.addEventListener('click', function() {
+                // Add click effect
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    window.open('https://www.facebook.com/AdnanRahiOffcial', '_blank');
+                }, 300);
+            });
+            
+            // Add button hover effects
+            const cyberButtons = document.querySelectorAll('.cyber-button');
+            cyberButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.classList.add('hover');
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.classList.remove('hover');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
