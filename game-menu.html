@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Menu | R4H1 GAMING ZONE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for game menu */
+        .games-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .games-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .games-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .game-card {
+            background-color: rgba(17, 17, 34, 0.8);
+            border-radius: 15px;
+            border: 2px solid rgba(15, 240, 252, 0.2);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), transparent, var(--neon-pink), transparent, var(--neon-green));
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .game-card:hover::before {
+            opacity: 1;
+            animation: borderGlow 3s linear infinite;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 15px 30px rgba(15, 240, 252, 0.3);
+        }
+        
+        .game-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .game-card:nth-child(1) .game-icon {
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+        }
+        
+        .game-card:nth-child(2) .game-icon {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px var(--neon-pink);
+        }
+        
+        .game-card:nth-child(3) .game-icon {
+            color: var(--neon-green);
+            text-shadow: 0 0 20px var(--neon-green);
+        }
+        
+        .game-card:nth-child(4) .game-icon {
+            color: var(--neon-purple);
+            text-shadow: 0 0 20px var(--neon-purple);
+        }
+        
+        .game-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .game-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+        
+        .game-features {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .game-feature {
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .play-button {
+            background-color: rgba(15, 240, 252, 0.1);
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-family: var(--font-heading);
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .play-button:hover {
+            background-color: rgba(15, 240, 252, 0.2);
+            box-shadow: 0 0 15px var(--neon-blue);
+            transform: scale(1.05);
+        }
+        
+        .menu-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .games-title {
+                font-size: 2rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .games-title {
+                font-size: 1.8rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyberpunk-bg">
+        <div class="grid-lines"></div>
+        <div class="scanline"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+    
+    <!-- Back Button -->
+    <div id="back-button-container" style="position: absolute; top: 20px; left: 20px; z-index: 100;"></div>
+    
+    <header class="main-header">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <h1 class="site-title">R4H1 <span class="neon-text">GAMING ZONE</span></h1>
+            <div class="logo-subtitle">SELECT YOUR GAME</div>
+        </div>
+        
+        <div class="header-glow"></div>
+    </header>
+
+    <main class="main-menu">
+        <div class="menu-container">
+            <div class="games-header">
+                <h2 class="games-title">GAME COLLECTION</h2>
+                <p class="games-subtitle">Choose from our collection of cyberpunk-enhanced classic games. Each game features a unique neon aesthetic and responsive design.</p>
+                <div class="cyber-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-icon"><i class="fas fa-chevron-down"></i></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+
+            <div class="games-grid" id="games-grid">
+                <!-- Game cards will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="menu-actions">
+                <button id="back-to-main" class="cyber-button cyber-button-secondary">
+                    <span class="button-content">
+                        <i class="fas fa-home button-icon"></i>
+                        <span class="button-text">BACK TO MAIN MENU</span>
+                    </span>
+                    <span class="button-glow"></span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p class="copyright">© 2023 R4H1 GAMING ZONE | CYBERPUNK EDITION</p>
+            <div class="social-icons">
+                <div class="social-icon"><i class="fab fa-github"></i></div>
+                <div class="social-icon"><i class="fab fa-twitter"></i></div>
+                <div class="social-icon"><i class="fab fa-discord"></i></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create back button
+            const backButtonContainer = document.getElementById('back-button-container');
+            const backButton = createBackButton();
+            backButtonContainer.appendChild(backButton);
+            
+            // Games data
+            const games = [
+                {
+                    id: 'xo-2p',
+                    title: 'XO GAME',
+                    subtitle: '2 PLAYER',
+                    icon: 'fas fa-times',
+                    description: 'Classic Tic-Tac-Toe game for two players. Battle against a friend in this neon-lit strategy game.',
+                    features: ['2 Players', 'Turn-based', 'Strategy'],
+                    color: 'var(--neon-blue)',
+                    page: 'xo-2p.html'
+                },
+                {
+                    id: 'xo-ai',
+                    title: 'XO GAME',
+                    subtitle: 'VS AI',
+                    icon: 'fas fa-robot',
+                    description: 'Challenge our advanced AI in Tic-Tac-Toe. Multiple difficulty levels available.',
+                    features: ['AI Opponent', '3 Difficulties', 'Adaptive'],
+                    color: 'var(--neon-pink)',
+                    page: 'xo-ai.html'
+                },
+                {
+                    id: 'chess',
+                    title: 'CHESS',
+                    subtitle: '2 PLAYER',
+                    icon: 'fas fa-chess',
+                    description: 'The classic game of kings. Play chess with a cyberpunk twist against a friend.',
+                    features: ['2 Players', 'Strategy', 'Classic'],
+                    color: 'var(--neon-green)',
+                    page: 'chess.html'
+                },
+                {
+                    id: '2048',
+                    title: '2048',
+                    subtitle: 'PUZZLE GAME',
+                    icon: 'fas fa-th',
+                    description: 'Slide numbered tiles to combine them and reach the 2048 tile. Addictive puzzle action.',
+                    features: ['Single Player', 'Puzzle', 'Infinite'],
+                    color: 'var(--neon-purple)',
+                    page: 'game-2048.html'
+                }
+            ];
+            
+            // Create game cards
+            const gamesGrid = document.getElementById('games-grid');
+            
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.dataset.gameId = game.id;
+                
+                gameCard.innerHTML = `
+                    <div class="game-icon">
+                        <i class="${game.icon}"></i>
+                    </div>
+                    <h3 class="game-title">${game.title}</h3>
+                    <div class="neon-text" style="color: ${game.color}; margin-bottom: 10px; font-family: var(--font-heading);">${game.subtitle}</div>
+                    <p class="game-description">${game.description}</p>
+                    <div class="game-features">
+                        ${game.features.map(feature => `<span class="game-feature">${feature}</span>`).join('')}
+                    </div>
+                    <button class="play-button" data-game-page="${game.page}">
+                        <i class="fas fa-play"></i> PLAY NOW
+                    </button>
+                `;
+                
+                gamesGrid.appendChild(gameCard);
+            });
+            
+            // Add click events to game cards and buttons
+            const playButtons = document.querySelectorAll('.play-button');
+            playButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const gamePage = this.getAttribute('data-game-page');
+                    
+                    // Add click effect
+                    this.style.transform = 'scale(0.95)';
+                    
+                    setTimeout(() => {
+                        // Open game in new page
+                        window.open(gamePage, '_blank');
+                    }, 200);
+                });
+            });
+            
+            // Add hover effect to game cards
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.classList.add('hover');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('hover');
+                });
+                
+                // Allow clicking anywhere on the card to play
+                card.addEventListener('click', function(e) {
+                    // Only trigger if not clicking the play button
+                    if (!e.target.closest('.play-button')) {
+                        const playButton = this.querySelector('.play-button');
+                        playButton.click();
+                    }
+                });
+            });
+            
+            // Back to main menu button
+            const backToMainBtn = document.getElementById('back-to-main');
+            backToMainBtn.addEventListener('click', function() {
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 300);
+            });
+            
+            // Add hover effects
+            backToMainBtn.addEventListener('mouseenter', function() {
+                this.classList.add('hover');
+            });
+            
+            backToMainBtn.addEventListener('mouseleave', function() {
+                this.classList.remove('hover');
+            });
+            
+            // Show notification when page loads
+            setTimeout(() => {
+                showNotification('Game menu loaded. Select a game to begin!', 'success');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
