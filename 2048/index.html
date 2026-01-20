@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2048 | R4H1 Gaming Zone</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="2048.css">
+</head>
+
+<body>
+
+<div class="game-container">
+  <h1 class="title">2048</h1>
+
+  <div class="top-bar">
+    <div class="score-box">
+      <span>SCORE</span>
+      <div id="score">0</div>
+    </div>
+    <div class="score-box">
+      <span>BEST</span>
+      <div id="best">0</div>
+    </div>
+  </div>
+
+  <div class="board" id="board"></div>
+
+  <div class="controls">
+    <button onclick="restart()">NEW GAME</button>
+    <button onclick="goBack()">BACK</button>
+  </div>
+</div>
+
+<script src="2048.js"></script>
+</body>
+</html>
