@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Orbitron',sans-serif;
+  background:linear-gradient(135deg,#000814,#001d3d);
+  color:#00e5ff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.game-container{
+  width:360px;
+  padding:20px;
+  background:rgba(0,0,0,.55);
+  border-radius:20px;
+  box-shadow:0 0 40px #00e5ff;
+  text-align:center;
+}
+
+.title{
+  font-size:36px;
+  margin-bottom:20px;
+  text-shadow:0 0 20px #00e5ff;
+}
+
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.score-box{
+  background:rgba(0,229,255,.15);
+  padding:10px;
+  border-radius:10px;
+  width:45%;
+}
+
+.score-box span{
+  font-size:12px;
+}
+
+.score-box div{
+  font-size:22px;
+}
+
+.board{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,75px);
+  gap:10px;
+  margin:20px auto;
+}
+
+.cell{
+  width:75px;
+  height:75px;
+  background:rgba(0,229,255,.1);
+  border-radius:10px;
+}
+
+.tile{
+  position:absolute;
+  width:75px;
+  height:75px;
+  border-radius:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  font-weight:600;
+  transition:transform .18s ease-in-out;
+}
+
+.tile-2{background:#80ffdb;color:#000}
+.tile-4{background:#64dfdf;color:#000}
+.tile-8{background:#48bfe3}
+.tile-16{background:#5390d9}
+.tile-32{background:#6930c3}
+.tile-64{background:#5e60ce}
+.tile-128{background:#7400b8}
+.tile-256{background:#9d4edd}
+.tile-512{background:#c77dff}
+.tile-1024{background:#ff6d00}
+.tile-2048{background:#ff0000}
+
+.controls{
+  margin-top:15px;
+}
+
+button{
+  margin:5px;
+  padding:10px 25px;
+  background:transparent;
+  border:2px solid #00e5ff;
+  color:#00e5ff;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#00e5ff;
+  color:#000;
+}
