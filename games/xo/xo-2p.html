@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>XO 2vs2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../css/theme.css">
+<script src="../../js/gate.js" defer></script>
+</head>
+
+<body>
+
+<h1 class="title">XO — 2 VS 2</h1>
+
+<div class="xo-board" id="board"></div>
+<div id="status">Player X Turn</div>
+
+<button onclick="reset()">RESTART</button>
+<button class="back" onclick="location.href='../../menu.html'">BACK</button>
+
+<style>
+.xo-board{
+  display:grid;
+  grid-template-columns:repeat(3,100px);
+  gap:12px;
+  margin:30px 0;
+}
+.xo-cell{
+  width:100px;
+  height:100px;
+  font-size:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #00e5ff;
+  cursor:pointer;
+  box-shadow:0 0 15px #00e5ff;
+}
+.xo-cell:hover{
+  background:rgba(0,229,255,.15);
+}
+</style>
+
+<script>
+const board = document.getElementById("board");
+const status = document.getElementById("status");
+let cells = Array(9).fill("");
+let current = "X";
+let gameOver = false;
+
+function draw(){
+  board.innerHTML="";
+  cells.forEach((v,i)=>{
+    const d=document.createElement("div");
+    d.className="xo-cell";
+    d.textContent=v;
+    d.onclick=()=>play(i);
+    board.appendChild(d);
+  });
+}
+
+function play(i){
+  if(cells[i] || gameOver) return;
+  cells[i]=current;
+  if(checkWin()){
+    status.textContent=`Player ${current} Wins`;
+    gameOver=true;
+  }else if(!cells.includes("")){
+    status.textContent="Draw!";
+    gameOver=true;
+  }else{
+    current = current==="X"?"O":"X";
+    status.textContent=`Player ${current} Turn`;
+  }
+  draw();
+}
+
+function checkWin(){
+  const w=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  return w.some(c=>c.every(i=>cells[i]===current));
+}
+
+function reset(){
+  cells=Array(9).fill("");
+  current="X";
+  gameOver=false;
+  status.textContent="Player X Turn";
+  draw();
+}
+
+draw();
+</script>
+
+</body>
+</html>
