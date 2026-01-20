@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Game Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/gate.js" defer></script>
+<script src="js/router.js" defer></script>
+</head>
+
+<body>
+<h1 class="title">SELECT GAME</h1>
+
+<button onclick="go('games/xo/xo-2p.html')">XO 2vs2</button>
+<button onclick="go('games/xo/xo-ai.html')">XO AI</button>
+<button onclick="go('games/2048/2048.html')">2048</button>
+<button onclick="go('games/chess/chess-ai.html')">CHESS AI</button>
+
+<button class="back" onclick="go('index.html')">BACK</button>
+</body>
+</html>
