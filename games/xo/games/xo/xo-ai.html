@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>XO AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../css/theme.css">
+<script src="../../js/gate.js" defer></script>
+</head>
+
+<body>
+
+<h1 class="title">XO — AI MODE</h1>
+
+<div class="xo-board" id="board"></div>
+<div id="status">Your Turn (X)</div>
+
+<button onclick="reset()">RESTART</button>
+<button class="back" onclick="location.href='../../menu.html'">BACK</button>
+
+<style>
+.xo-board{
+  display:grid;
+  grid-template-columns:repeat(3,100px);
+  gap:12px;
+  margin:30px 0;
+}
+.xo-cell{
+  width:100px;
+  height:100px;
+  font-size:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #00e5ff;
+  cursor:pointer;
+  box-shadow:0 0 15px #00e5ff;
+}
+</style>
+
+<script>
+const board=document.getElementById("board");
+const status=document.getElementById("status");
+let cells=Array(9).fill("");
+let gameOver=false;
+
+function draw(){
+  board.innerHTML="";
+  cells.forEach((v,i)=>{
+    const d=document.createElement("div");
+    d.className="xo-cell";
+    d.textContent=v;
+    d.onclick=()=>playerMove(i);
+    board.appendChild(d);
+  });
+}
+
+function playerMove(i){
+  if(cells[i]||gameOver) return;
+  cells[i]="X";
+  if(check("X")) return end("YOU WIN!");
+  if(full()) return end("DRAW");
+  aiMove();
+}
+
+function aiMove(){
+  let empty=cells.map((v,i)=>v===""?i:null).filter(v=>v!==null);
+  let move=empty[Math.floor(Math.random()*empty.length)];
+  cells[move]="O";
+  if(check("O")) return end("AI WINS!");
+  draw();
+}
+
+function check(p){
+  const w=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  return w.some(c=>c.every(i=>cells[i]===p));
+}
+
+function full(){return !cells.includes("");}
+
+function end(msg){
+  status.textContent=msg;
+  gameOver=true;
+  draw();
+}
+
+function reset(){
+  cells=Array(9).fill("");
+  gameOver=false;
+  status.textContent="Your Turn (X)";
+  draw();
+}
+
+draw();
+</script>
+
+</body>
+</html>
